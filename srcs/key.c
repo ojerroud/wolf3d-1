@@ -15,6 +15,11 @@ int		loop_hook(t_env *e)
 	return (0);
 }
 
+int 	red_cross(int i)
+{
+	exit(i);
+}
+
 void	key_move(int k, t_env *e)
 {
 	if (k == KEY_UP)

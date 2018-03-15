@@ -78,6 +78,8 @@ typedef struct		s_env
 	int				**map;
 	int				map_width;
 	int				map_height;
+	unsigned int 	*texture_wall;
+	unsigned int 	*texture_ground;
 	unsigned int	color_wall;
 	unsigned int	color_sky;
 	unsigned int	color_ground;
@@ -98,4 +100,6 @@ void				move_down(t_env *e);
 void				error_map(void);
 void				error_arg(void);
 void				error_malloc(void);
+int 				red_cross(int i);
+
 #endif

@@ -6,13 +6,16 @@ void			put_pxl(t_env *e, int x, int y, unsigned int c)
 
 	i = (x * 4) + (y * e->mlx.s_line);
 	e->mlx.pxl[i] = c;
-	e->mlx.pxl[++i] = c + 10;
-	e->mlx.pxl[++i] = c + 20;
+	e->mlx.pxl[++i] = c >> 8;
+	e->mlx.pxl[++i] = c >> 16;
 }
 
-// void 			add_texture(t_env *e, char *name_texture)
+// void 			add_texture(t_env *e, char *texture_name)
 // {
-// 	mlx_xpm_to_image();
+// 	if (ft_strcmp("wall", texture_name) == 0)
+// 	{
+// 		while (e->texture_wall[e->])
+// 	}
 // }
 
 void			draw_line(t_env *e, int x, int start, int end)
