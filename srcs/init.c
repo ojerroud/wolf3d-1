@@ -8,13 +8,14 @@ static void		init_player(t_env *e)
 	e->player.dir.y = 0;
 	e->player.z = 0;
 	e->player.plane.x = 0;
-	e->player.plane.y = 0.9;
+	e->player.plane.y = 0.66;
 	e->player.speed_turn = 0.05;
 	e->player.speed_move = 0.1;
 	e->player.move_up = 0;
 	e->player.move_down = 0;
 	e->player.move_right = 0;
 	e->player.move_left = 0;
+	// e->texture_wall = load_texture(e);
 }
 
 static void		init_mlx(t_env *e)

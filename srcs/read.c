@@ -16,8 +16,8 @@ static void		read_pos(int fd, t_env *e)
 		error_map();
 	e->map_width = ft_atoi(line_split[0]);
 	e->map_height = ft_atoi(line_split[1]);
-	e->player.pos.x = ft_atoi(line_split[2]);
-	e->player.pos.y = ft_atoi(line_split[3]);
+	e->player.pos.x = ft_atoi(line_split[2]) - 0.5;
+	e->player.pos.y = ft_atoi(line_split[3]) - 0.5;
 	if (e->map_width < 0 || e->map_height < 0 || e->player.pos.x < 0 ||
 			e->player.pos.y < 0 || e->player.pos.x >= e->map_width ||
 			e->player.pos.y >= e->map_width)
@@ -69,9 +69,6 @@ int				open_file(t_env *e, char *f)
 {
 	int		fd;
 
-	fd = open(f, O_DIRECTORY);
-	if (fd >= 0)
-		return (0);
 	fd = open(f, O_RDONLY);
 	if (fd < 0)
 		return (0);
