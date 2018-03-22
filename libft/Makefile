@@ -82,7 +82,8 @@ SRC = ft_atoi.c \
 	  ft_lstadd2.c \
 	  ft_lstnew2.c \
 	  ft_strchr2.c \
-	  ft_memcat.c
+	  ft_memcat.c \
+	  ft_hexa_to_int.c
 
 OBJ = $(SRC:%.c=objs/%.o)
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wolf.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ojerroud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/22 16:48:13 by ojerroud          #+#    #+#             */
+/*   Updated: 2018/03/22 16:48:14 by ojerroud         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef WOLF_H
 # define WOLF_H
 
@@ -17,6 +29,14 @@
 # define KEY_PRESS_MASK (1L<<0)
 # define KEY_PRESS 2
 
+# define T_PARAMS		4
+# define NONE			0
+
+# define TEXTURE_WEST		"texture/ceil1.xpm"
+# define TEXTURE_EAST		"texture/ceil2.xpm"
+# define TEXTURE_NORTH		"texture/ceil3.xpm"
+# define TEXTURE_SOUTH		"texture/ceil4.xpm"
+
 typedef struct		s_ixy
 {
 	int				x;
@@ -28,6 +48,12 @@ typedef struct		s_dxy
 	double			x;
 	double			y;
 }					t_dxy;
+
+typedef struct		s_texture_color
+{
+	char			id;
+	int				color;
+}					t_texture_color;
 
 typedef struct		s_player
 {
@@ -68,6 +94,13 @@ typedef struct		s_mlx
 	int				ed;
 }					t_mlx;
 
+typedef struct		s_text
+{
+	struct s_ixy	max;
+	struct s_ixy	cur;
+	int				**texture;
+}					t_text;
+
 typedef struct		s_env
 {
 	struct s_mlx	mlx;
@@ -76,14 +109,18 @@ typedef struct		s_env
 	int				height;
 	int				width;
 	int				**map;
-	int 			i;
+	int				i;
 	int				map_width;
 	int				map_height;
-	unsigned int 	*texture_wall;
-	unsigned int 	*texture_ground;
+	unsigned int	*texture_wall;
+	unsigned int	*texture_ground;
 	unsigned int	color_wall;
 	unsigned int	color_sky;
 	unsigned int	color_ground;
+	t_text			text1;
+	t_text			text2;
+	t_text			text3;
+	t_text			text4;
 }					t_env;
 
 int					loop_hook(t_env *e);
@@ -91,7 +128,7 @@ int					open_file(t_env *e, char *f);
 int					key_hook(int k, t_env *e);
 int					key_press(int k, t_env *e);
 int					key_release(int k, t_env *e);
-t_env				*init_env(void);
+t_env				init_env(void);
 void				draw_line(t_env *e, int x, int start, int end);
 void				raycasting(t_env *e);
 void				move_left(t_env *e);
@@ -101,6 +138,7 @@ void				move_down(t_env *e);
 void				error_map(void);
 void				error_arg(void);
 void				error_malloc(void);
-int 				red_cross(int i);
-int 				next_color(t_env *e, int texture_code);
+int					red_cross(int i);
+int					next_color(t_env *e, int texture_code);
+void				texture(t_text *text, char *xpm);
 #endif

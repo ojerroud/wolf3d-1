@@ -96,5 +96,6 @@ void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 char			*ft_memcat(t_gnl *s1, char *s2);
 int				get_next_line(const int fd, char **line);
+int				ft_hexa_to_int(char *str);
 
 #endif

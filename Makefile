@@ -35,7 +35,8 @@ SRC = draw.c \
 	  main.c \
 	  move.c \
 	  ray.c \
-	  read.c
+	  read.c \
+	  texture.c
 
 OBJ = $(SRC:%.c=objs/%.o)
 

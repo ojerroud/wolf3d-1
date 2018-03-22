@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ojerroud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/22 16:45:32 by ojerroud          #+#    #+#             */
+/*   Updated: 2018/03/22 16:45:34 by ojerroud         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf.h"
 
 static void		init_player(t_env *e)
@@ -15,7 +27,6 @@ static void		init_player(t_env *e)
 	e->player.move_down = 0;
 	e->player.move_right = 0;
 	e->player.move_left = 0;
-	// e->texture_wall = load_texture(e);
 }
 
 static void		init_mlx(t_env *e)
@@ -28,18 +39,20 @@ static void		init_mlx(t_env *e)
 			&(e->mlx.ed));
 }
 
-t_env			*init_env(void)
+t_env			init_env(void)
 {
-	t_env	*e;
+	t_env	e;
 
-	if (!(e = (t_env *)malloc(sizeof(t_env))))
-		error_malloc();
-	e->width = WIDTH;
-	e->height = HEIGHT;
-	init_player(e);
-	init_mlx(e);
-	e->color_wall = 0x87591A;
-	e->color_sky = 0x00cdff;
-	e->color_ground = 0x16B84E;
+	e.width = WIDTH;
+	e.height = HEIGHT;
+	init_player(&e);
+	init_mlx(&e);
+	e.color_wall = 0x87591A;
+	e.color_sky = 0x00cdff;
+	e.color_ground = 0x16B84E;
+	texture(&e.text1, TEXTURE_WEST);
+	texture(&e.text2, TEXTURE_EAST);
+	texture(&e.text3, TEXTURE_NORTH);
+	texture(&e.text4, TEXTURE_SOUTH);
 	return (e);
 }
