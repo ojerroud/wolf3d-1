@@ -16,10 +16,20 @@ void	move_up(t_env *e)
 {
 	if (e->map[(int)(e->player.pos.x + e->player.dir.x * e->player.speed_move)]
 			[(int)e->player.pos.y] == 0)
+	{
 		e->player.pos.x += e->player.dir.x * e->player.speed_move;
+		if (e->map[(int)(e->player.pos.x + e->player.dir.x * e->player.speed_move)]
+			[(int)e->player.pos.y] != 0)
+			e->player.pos.x -= e->player.dir.x * e->player.speed_move;
+	}
 	if (e->map[(int)e->player.pos.x][(int)(e->player.pos.y + e->player.dir.y *
 				e->player.speed_move)] == 0)
+	{
 		e->player.pos.y += e->player.dir.y * e->player.speed_move;
+		if (e->map[(int)e->player.pos.x][(int)(e->player.pos.y + e->player.dir.y *
+				e->player.speed_move)] != 0)
+			e->player.pos.y -= e->player.dir.y * e->player.speed_move;
+	}
 }
 
 void	move_down(t_env *e)

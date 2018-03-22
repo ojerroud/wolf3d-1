@@ -54,12 +54,11 @@ void			draw_line(t_env *e, int x, int start, int end)
 	tmpy = 0;
 	while (++i < e->height / 2)
 		put_pxl(e, x, i, wall_orientation(e, ++tmpy, x));
-	i = (e->height / 2 - tmp) + e->height / 2 - 1;
+	i = end - 1;
 	tmpy = 0;
 	while (--i >= e->height / 2)
 		put_pxl(e, x, i, wall_orientation(e, ++tmpy, x));
-	i = (e->height / 2 - tmp) + e->height / 2 - 1;
+	i = end - 1;
 	while (++i < e->height)
 		put_pxl(e, x, i, e->color_ground);
-	end = 0;
 }
