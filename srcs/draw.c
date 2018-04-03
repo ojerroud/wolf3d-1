@@ -23,21 +23,21 @@ void			put_pxl(t_env *e, int x, int y, unsigned int c)
 	e->mlx.pxl[++i] = c >> 16;
 }
 
-unsigned int	wall_orientation(t_env *e, int x, int y)
+unsigned int	wall_orientation(t_env *e, int y, int x, double tmp2)
 {
 	if (e->ray.hit_side == 1)
 	{
 		if ((e->ray.step.x == -1 && e->ray.step.y == -1) ||
 			(e->ray.step.x == 1 && e->ray.step.y == -1))
-			return (e->text1.texture[x % e->text1.max.y][y % e->text1.max.x]);
+			return (e->text1.texture[(int)(x / tmp2) % e->text1.max.y][(int)(y / tmp2) % e->text1.max.x]);
 		if ((e->ray.step.x == -1 && e->ray.step.y == 1) ||
 			(e->ray.step.x == 1 && e->ray.step.y == 1))
-			return (e->text2.texture[x % e->text2.max.y][y % e->text2.max.x]);
+			return (e->text2.texture[(int)(x / tmp2) % e->text2.max.y][(int)(y / tmp2) % e->text2.max.x]);
 	}
 	if ((e->ray.step.x == -1 && e->ray.step.y == -1) ||
 		(e->ray.step.x == -1 && e->ray.step.y == 1))
-		return (e->text3.texture[x % e->text3.max.y][y % e->text3.max.x]);
-	return (e->text4.texture[x % e->text4.max.y][y % e->text4.max.x]);
+		return (e->text3.texture[(int)(x / tmp2) % e->text3.max.y][(int)(y / tmp2) % e->text3.max.x]);
+	return (e->text4.texture[(int)(x / tmp2) % e->text4.max.y][(int)(y / tmp2) % e->text4.max.x]);
 }
 
 void			draw_line(t_env *e, int x, int start, int end)
@@ -45,6 +45,7 @@ void			draw_line(t_env *e, int x, int start, int end)
 	int				i;
 	int				tmpy;
 	int				tmp;
+	double			tmp2;
 
 	i = -1;
 	while (++i < start + e->player.z)
@@ -52,13 +53,10 @@ void			draw_line(t_env *e, int x, int start, int end)
 	i--;
 	tmp = i;
 	tmpy = 0;
-	while (++i < e->height / 2)
-		put_pxl(e, x, i, wall_orientation(e, ++tmpy, x));
-	i = end - 1;
-	tmpy = 0;
-	while (--i >= e->height / 2)
-		put_pxl(e, x, i, wall_orientation(e, ++tmpy, x));
-	i = end - 1;
+	tmp2 = (end - start ) / (double)64;
+	while (++i < end)
+		put_pxl(e, x, i, wall_orientation(e, x, ++tmpy, tmp2));
+	i--;
 	while (++i < e->height)
 		put_pxl(e, x, i, e->color_ground);
 }

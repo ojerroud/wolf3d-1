@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <mlx.h>
 # include <math.h>
+# include <stdio.h>
 
 # define WIDTH 800
 # define HEIGHT 600
@@ -32,10 +33,10 @@
 # define T_PARAMS		4
 # define NONE			0
 
-# define TEXTURE_WEST		"texture/ceil1.xpm"
-# define TEXTURE_EAST		"texture/ceil2.xpm"
-# define TEXTURE_NORTH		"texture/ceil3.xpm"
-# define TEXTURE_SOUTH		"texture/ceil4.xpm"
+# define TEXTURE_WEST		"texture/wall1h.xpm"
+# define TEXTURE_EAST		"texture/wall2h.xpm"
+# define TEXTURE_NORTH		"texture/wall3h.xpm"
+# define TEXTURE_SOUTH		"texture/wall4h.xpm"
 
 typedef struct		s_ixy
 {
@@ -117,6 +118,10 @@ typedef struct		s_env
 	unsigned int	color_wall;
 	unsigned int	color_sky;
 	unsigned int	color_ground;
+	char			**xpm_data;
+	int				width2;
+	int				height2;
+	void			*test;
 	t_text			text1;
 	t_text			text2;
 	t_text			text3;

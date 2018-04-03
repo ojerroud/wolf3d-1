@@ -30,7 +30,7 @@ static void		ray_draw(t_env *e, int x)
 
 static void		ray_calc_dist(t_env *e)
 {
-	while (e->ray.hit == 0)
+	while (!e->map[e->ray.map.x][e->ray.map.y])
 	{
 		if (e->ray.side.x < e->ray.side.y)
 		{
@@ -44,17 +44,13 @@ static void		ray_calc_dist(t_env *e)
 			e->ray.map.y += e->ray.step.y;
 			e->ray.hit_side = 1;
 		}
-		if (e->map[e->ray.map.x][e->ray.map.y] > 0)
-		{
-			e->ray.hit = 1;
-			if (e->ray.hit_side == 0)
-				e->ray.dist = (e->ray.map.x - e->ray.pos.x + (1 - e->ray.step.x)
-						/ 2) / e->ray.dir.x;
-			else
-				e->ray.dist = (e->ray.map.y - e->ray.pos.y + (1 - e->ray.step.y)
-						/ 2) / e->ray.dir.y;
-		}
 	}
+	if (!e->ray.hit_side)
+		e->ray.dist = (e->ray.map.x - e->ray.pos.x + (1 - e->ray.step.x)
+				/ 2) / e->ray.dir.x;
+	else
+		e->ray.dist = (e->ray.map.y - e->ray.pos.y + (1 - e->ray.step.y)
+				/ 2) / e->ray.dir.y;
 }
 
 static void		ray_calc_step_side(t_env *e)
@@ -100,15 +96,18 @@ static void		ray_init(t_env *e, int x)
 void			raycasting(t_env *e)
 {
 	int		x;
+	int		tmp;
 
 	x = -1;
 	e->ray.pos.x = e->player.pos.x;
 	e->ray.pos.y = e->player.pos.y;
 	while (++x < e->width)
 	{
-		ray_init(e, x);
+		if (!x)
+			tmp = -1;
+		ray_init(e, ++tmp);
 		ray_calc_step_side(e);
 		ray_calc_dist(e);
-		ray_draw(e, x);
+		ray_draw(e, tmp);
 	}
 }
