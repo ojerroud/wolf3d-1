@@ -24,7 +24,7 @@ int		loop_hook(t_env *e)
 		move_left(e);
 	raycasting(e);
 	mlx_put_image_to_window(e->mlx.mlx, e->mlx.win, e->mlx.img, 0, 0);
-	mlx_put_image_to_window(e->mlx.mlx, e->mlx.win, e->test, 0, 0);
+	// mlx_put_image_to_window(e->mlx.mlx, e->mlx.win, e->test, 0, 0);
 	return (0);
 }
 

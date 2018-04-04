@@ -127,6 +127,7 @@ void			texture(t_text *text, char *xpm)
 	{
 		if (line[0] == 34)
 		{
+
 			params = param(text, line);
 			t_colors = get_color(line, fd, params);
 			str = stock_buffer(text, line, fd);

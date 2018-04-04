@@ -50,10 +50,8 @@ t_env			init_env(void)
 	e.color_wall = 0x87591A;
 	e.color_sky = 0x00cdff;
 	e.color_ground = 0x16B84E;
-	e.width2 = 0;
-	e.height2 = 0;
-	e.test = "texture/ceil2.xpm";
-	e.test = mlx_xpm_file_to_image(e.mlx.mlx, e.test, &e.width2, &e.height2);
+	// e.test = "texture/ceil1.xpm";
+	// e.test = mlx_xpm_file_to_image(e.mlx.mlx, "texture/wall1h.xpm", &e.width2, &e.height2);
 	texture(&e.text1, TEXTURE_WEST);
 	texture(&e.text2, TEXTURE_EAST);
 	texture(&e.text3, TEXTURE_NORTH);

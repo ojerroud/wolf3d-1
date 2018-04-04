@@ -48,13 +48,19 @@ void			draw_line(t_env *e, int x, int start, int end)
 	double			tmp2;
 
 	i = -1;
+	// (!x) ? tmpy = text - 1 : 0;
+	// (!x) ? printf("%d\n", tmpy) : 0;
+	// (!x) ? text = text / 64 : 0;
+	tmpy = 0;
+	// text = 0;
 	while (++i < start + e->player.z)
 		put_pxl(e, x, i, e->color_sky);
 	i--;
 	tmp = i;
-	tmpy = 0;
-	tmp2 = (end - start ) / (double)64;
-	while (++i < end)
+	tmp2 = (end - start) / (double)64;
+	// printf("%d\n", text % 64);
+
+	while (++i <= end)
 		put_pxl(e, x, i, wall_orientation(e, x, ++tmpy, tmp2));
 	i--;
 	while (++i < e->height)

@@ -33,9 +33,9 @@
 # define T_PARAMS		4
 # define NONE			0
 
-# define TEXTURE_WEST		"texture/wall1h.xpm"
-# define TEXTURE_EAST		"texture/wall2h.xpm"
-# define TEXTURE_NORTH		"texture/wall3h.xpm"
+# define TEXTURE_WEST		"texture/wall4h.xpm"
+# define TEXTURE_EAST		"texture/wall4h.xpm"
+# define TEXTURE_NORTH		"texture/wall4h.xpm"
 # define TEXTURE_SOUTH		"texture/wall4h.xpm"
 
 typedef struct		s_ixy

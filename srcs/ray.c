@@ -96,18 +96,35 @@ static void		ray_init(t_env *e, int x)
 void			raycasting(t_env *e)
 {
 	int		x;
-	int		tmp;
+	// int		a;
+	// int		b;
 
 	x = -1;
 	e->ray.pos.x = e->player.pos.x;
 	e->ray.pos.y = e->player.pos.y;
 	while (++x < e->width)
 	{
-		if (!x)
-			tmp = -1;
-		ray_init(e, ++tmp);
+		ray_init(e, x);
 		ray_calc_step_side(e);
 		ray_calc_dist(e);
-		ray_draw(e, tmp);
+		// if (!x)
+		// {
+		// 	// if (e->ray.hit_side == 0)
+		// 	// 	tmp = (e->ray.pos.y + e->ray.dist * e->ray.dir.y);
+		// 	// else
+		// 	// 	tmp = (e->ray.pos.x + e->ray.dist * e->ray.dir.x);
+		// 	if (e->ray.hit_side == 0)
+		// 	{
+		// 		a = (int)((e->ray.pos.x + fabs(e->ray.dir.x / e->ray.dir.y * e->ray.dist)) * 64) % 64;
+		// 		b = (int)((e->ray.pos.y + fabs(e->ray.dir.y / e->ray.dir.y * e->ray.dist)) * 64) % 64;
+		// 	}
+		// 	else
+		// 	{
+		// 		a = (int)((e->ray.pos.x + fabs(e->ray.dir.x / e->ray.dir.x * e->ray.dist)) * 64) % 64;
+		// 		b = (int)((e->ray.pos.y + fabs(e->ray.dir.y / e->ray.dir.x * e->ray.dist)) * 64) % 64;
+		// 	}
+		// 	printf("[%d][%d]\n", a, b);
+		// }
+		ray_draw(e, x);
 	}
 }
